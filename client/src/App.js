@@ -1,41 +1,24 @@
 // src/App.js
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import AuthComponent from './components/AuthComponent';
-import ItineraryComponent from './components/ItineraryComponent';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Header from './comonents/Header';
+import Home from './comonents/Home';
+import Login from './comonents/Login';
+import Register from './comonents/Register';
 
 function App() {
   return (
     <Router>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/auth">Auth Component</Link>
-            </li>
-            <li>
-              <Link to="/itinerary">Itinerary Component</Link>
-            </li>
-          </ul>
-        </nav>
-
-        <hr />
-
+        <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/auth" element={<AuthComponent />} />
-          <Route path="/itinerary" element={<ItineraryComponent />} />
+          <Route path="/register" element={<Register/>} />
+          <Route path="/login" element={<Login  />} />
         </Routes>
       </div>
     </Router>
   );
 }
-
-const Home = () => {
-  return <h2>Home</h2>;
-};
 
 export default App;

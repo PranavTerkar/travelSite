@@ -3,21 +3,23 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const userRouter = require('./routers/UserRouter');
-
 const app = express();
 const port = process.env.PORT || 3001;
+const UserRouter = require('./routes/userRouter')
+const errorHandler = require('./middleware/errorHandler')
+const dbConnect = require('./config/dbConnection')
+const validateUser = require('./middleware/validateToken')
 
-// Middleware
+
 app.use(cors());
-app.use(bodyParser.json());
+dbConnect(); 
+app.use(express.json()); 
+app.use('/api/user', UserRouter);
+app.use(errorHandler) ; 
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
-// ... (rest of the code remains the same)
 
-// Start the server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
