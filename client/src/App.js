@@ -5,7 +5,6 @@ import Header from './comonents/Header';
 import Home from './comonents/Home';
 import Login from './comonents/Login';
 import Register from './comonents/Register';
-import Destination from './comonents/Destination';
 
 function App() {
   return (
